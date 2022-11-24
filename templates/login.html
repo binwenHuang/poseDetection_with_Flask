@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+    <title>loading</title>
+  </head>
+  <link rel="stylesheet" href="../static/login.css">
+  <body>
+  <body>
+  <div class="from">
+      <img class="bgc" src="../static/loginbg.jfif" >
+      <div class="submit">
+          <span class="form_title">个人信息提交</span>
+          <div class="form_input">
+              <span>账号：</span>
+              <input class="inputs" type="text" placeholder="Username" name="username" id="username">
+          </div>
+          <div class="form_input">
+              <span>密码:</span>
+              <input class="inputs" type="password" placeholder="Password" name="password" id="password">
+          </div>
+          <div class="btn_submit">
+              <form class="form" method="post" action="" onsubmit="return Login();">
+                  <button class="btn" type="submit" id="login-button">SubmitLogin</button>
+              </form>
+          </div>
+      </div>
+  </div>
+  </body>
+{#    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }} "></script>#}
+   <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    function Login() {
+        var login = false;
+        var  txtname = $("#username").val();
+        var txtpsw = $("#password").val();
+
+        $.ajax({
+            url:"{{url_for("login") }}",{# 可以调到后台，路由名称#}
+            data:{"username":txtname,"userpswd":txtpsw},
+            type: 'GET',
+            contentType: 'json',{#'application/x-www-form-urlencoded',#}
+            async: false,
+            success: function (d) {
+                alert("success!"+d)
+                var status = d.status;
+                if (d != "undefined" && d=="success")
+                {
+                     window.location.href="cam";{# 这里链接的应该是路由中的名称#}
+                }
+                else
+                {
+                    alert("登录失败！")
+                }
+            }
+        });
+        return login;
+    }
+</script>
+
+</body>
+</html>

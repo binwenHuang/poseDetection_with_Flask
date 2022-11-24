@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姿态分析</title>
+</head>
+<link rel="stylesheet" href="../static/index.css">
+<body>
+<img class="bgc" src="../static/loginbg.jfif">
+<div class="main">
+    <h1 align="center">动作分析页面</h1>
+    <div class="camera">
+        <img id="bg" src="{{ url_for('video_feed')}}">
+    </div>
+
+    <div style="background: aqua;height: 50px;width: 100px">
+        角度：{{ a.0 }} {{ a.1 }} {{ a.2 }}
+{#        {% for sub in subject %}#}
+{#            <br>{{ sub }}#}
+{#        {% endfor %}#}
+    </div>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
+
+</body>
+</html>
